@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,17 +18,30 @@
         <input id="email" type="email" autocomplete="username" required>
 
         <label for="password">Password</label>
-        <input id="password" type="password" autocomplete="current-password" required>
+        <input
+          id="password"
+          type="password"
+          autocomplete="current-password"
+          required
+        >
 
         <button class="primary-button" type="submit">Sign In</button>
-        <p id="login-error" class="error-message" aria-live="polite"></p>
+
+        <p
+          id="login-error"
+          class="error-message"
+          aria-live="polite"
+        ></p>
       </form>
     </section>
 
     <section id="notes-view" hidden>
       <header class="top-bar">
         <div class="search-group">
-          <label class="sr-only" for="player-search">Search players</label>
+          <label class="sr-only" for="player-search">
+            Search players
+          </label>
+
           <input
             id="player-search"
             type="search"
@@ -35,7 +49,10 @@
             autocomplete="off"
           >
 
-          <label class="sr-only" for="category-filter">Filter by category</label>
+          <label class="sr-only" for="category-filter">
+            Filter by category
+          </label>
+
           <select id="category-filter">
             <option value="all">All categories</option>
             <option value="uncategorized">Uncategorized</option>
@@ -46,18 +63,34 @@
           </select>
         </div>
 
-        <button id="add-player-button" class="primary-button" type="button">
+        <button
+          id="add-player-button"
+          class="primary-button"
+          type="button"
+        >
           Add New Note
         </button>
 
-        <button id="sign-out-button" class="secondary-button" type="button">
+        <button
+          id="sign-out-button"
+          class="secondary-button"
+          type="button"
+        >
           Sign Out
         </button>
       </header>
 
-      <p id="save-status" class="save-status" aria-live="polite"></p>
+      <p
+        id="save-status"
+        class="save-status"
+        aria-live="polite"
+      ></p>
 
-      <section id="player-grid" class="player-grid" aria-label="Poker opponent notes"></section>
+      <section
+        id="player-grid"
+        class="player-grid"
+        aria-label="Poker opponent notes"
+      ></section>
 
       <p id="empty-message" class="empty-message" hidden>
         No players match your search.
@@ -65,16 +98,105 @@
     </section>
   </main>
 
+  <dialog id="add-player-dialog" class="note-dialog">
+    <form id="add-player-form">
+      <div class="dialog-header">
+        <h2>Add New Note</h2>
+
+        <button
+          id="close-dialog-button"
+          class="icon-button"
+          type="button"
+          aria-label="Close"
+        >
+          ×
+        </button>
+      </div>
+
+      <div class="dialog-fields">
+        <div class="field-group">
+          <label class="field-label" for="new-screen-name">
+            Screen name
+          </label>
+
+          <input
+            id="new-screen-name"
+            type="text"
+            maxlength="50"
+            autocomplete="off"
+            required
+          >
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="new-category">
+            Category
+          </label>
+
+          <select id="new-category">
+            <option value="uncategorized">Uncategorized</option>
+            <option value="fish">Fish</option>
+            <option value="wild-fish">Wild Fish</option>
+            <option value="good-reg">Good Reg</option>
+            <option value="tight-reg">Tight Reg</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="new-notes">
+            Notes
+          </label>
+
+          <textarea
+            id="new-notes"
+            rows="10"
+            placeholder="Type notes here..."
+          ></textarea>
+        </div>
+      </div>
+
+      <p
+        id="add-player-error"
+        class="error-message"
+        aria-live="polite"
+      ></p>
+
+      <div class="dialog-actions">
+        <button
+          id="cancel-add-button"
+          class="secondary-button"
+          type="button"
+        >
+          Cancel
+        </button>
+
+        <button
+          id="save-new-player-button"
+          class="primary-button"
+          type="submit"
+        >
+          Save Note
+        </button>
+      </div>
+    </form>
+  </dialog>
+
   <template id="player-card-template">
     <article class="player-card" data-category="uncategorized">
       <div class="card-header">
         <div class="field-group">
           <label class="field-label">Screen name</label>
-          <input class="screen-name-input" type="text" maxlength="50">
+
+          <input
+            class="screen-name-input"
+            type="text"
+            maxlength="50"
+          >
         </div>
 
         <div class="field-group category-group">
           <label class="field-label">Category</label>
+
           <select class="category-select">
             <option value="uncategorized">Uncategorized</option>
             <option value="fish">Fish</option>
@@ -87,6 +209,7 @@
 
       <div class="field-group notes-group">
         <label class="field-label">Notes</label>
+
         <textarea
           class="notes-input"
           rows="12"
@@ -95,8 +218,14 @@
       </div>
 
       <div class="card-footer">
-        <span class="card-saved-status" aria-live="polite"></span>
-        <button class="delete-button" type="button">Delete Note</button>
+        <span
+          class="card-saved-status"
+          aria-live="polite"
+        ></span>
+
+        <button class="delete-button" type="button">
+          Delete Note
+        </button>
       </div>
     </article>
   </template>
@@ -104,3 +233,4 @@
   <script type="module" src="script.js"></script>
 </body>
 </html>
+```
