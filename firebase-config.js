@@ -4,11 +4,11 @@
 // This configuration identifies your Firebase project. It is normal for these
 // values to be present in frontend code. Firestore Security Rules protect data.
 
-export const firebaseConfig = {
-  apiKey: "PASTE_YOUR_API_KEY_HERE",
-  authDomain: "PASTE_YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "PASTE_YOUR_PROJECT_ID",
-  storageBucket: "PASTE_YOUR_PROJECT_ID.firebasestorage.app",
-  messagingSenderId: "PASTE_YOUR_MESSAGING_SENDER_ID",
-  appId: "PASTE_YOUR_APP_ID"
-};
+const firebaseConfig = {
+    apiKey: "AIzaSyA5wd3u91fIyrmwoKv4W9GPnxzi_9ztWkQ",
+    authDomain: "poker-notes-363ed.firebaseapp.com",
+    projectId: "poker-notes-363ed",
+    storageBucket: "poker-notes-363ed.firebasestorage.app",
+    messagingSenderId: "235418951703",
+    appId: "1:235418951703:web:4856824af25c589289bc52"
+  };
