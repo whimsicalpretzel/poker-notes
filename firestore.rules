@@ -9,7 +9,7 @@ service cloud.firestore {
       allow read, create, update, delete:
         if request.auth != null
         && request.auth.uid == userId
-        && request.auth.uid == "YOUR_FIREBASE_USER_UID";
+        && request.auth.uid == "s340Ue4RdxPig0j7DRP5FcKDaxF3";
     }
 
     match /{document=**} {
