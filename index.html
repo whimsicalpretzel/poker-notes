@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,12 @@
 
       <form id="login-form">
         <label for="email">Email</label>
-        <input id="email" type="email" autocomplete="username" required>
+        <input
+          id="email"
+          type="email"
+          autocomplete="username"
+          required
+        >
 
         <label for="password">Password</label>
         <input
@@ -24,7 +30,9 @@
           required
         >
 
-        <button class="primary-button" type="submit">Sign In</button>
+        <button class="primary-button" type="submit">
+          Sign In
+        </button>
 
         <p
           id="login-error"
@@ -47,19 +55,6 @@
             placeholder="Search screen names..."
             autocomplete="off"
           >
-
-          <label class="sr-only" for="category-filter">
-            Filter by category
-          </label>
-
-          <select id="category-filter">
-            <option value="all">All categories</option>
-            <option value="uncategorized">Uncategorized</option>
-            <option value="fish">Fish</option>
-            <option value="wild-fish">Wild Fish</option>
-            <option value="good-reg">Good Reg</option>
-            <option value="tight-reg">Tight Reg</option>
-          </select>
         </div>
 
         <button
@@ -148,7 +143,7 @@
 
           <textarea
             id="new-notes"
-            rows="10"
+            rows="7"
             placeholder="Type notes here..."
           ></textarea>
         </div>
@@ -192,18 +187,6 @@
             maxlength="50"
           >
         </div>
-
-        <div class="field-group category-group">
-          <label class="field-label">Category</label>
-
-          <select class="category-select">
-            <option value="uncategorized">Uncategorized</option>
-            <option value="fish">Fish</option>
-            <option value="wild-fish">Wild Fish</option>
-            <option value="good-reg">Good Reg</option>
-            <option value="tight-reg">Tight Reg</option>
-          </select>
-        </div>
       </div>
 
       <div class="field-group notes-group">
@@ -211,7 +194,7 @@
 
         <textarea
           class="notes-input"
-          rows="12"
+          rows="7"
           placeholder="Type notes here..."
         ></textarea>
       </div>
@@ -222,9 +205,22 @@
           aria-live="polite"
         ></span>
 
-        <button class="delete-button" type="button">
-          Delete Note
-        </button>
+        <div class="card-actions">
+          <select
+            class="category-select"
+            aria-label="Player category"
+          >
+            <option value="uncategorized">Uncategorized</option>
+            <option value="fish">Fish</option>
+            <option value="wild-fish">Wild Fish</option>
+            <option value="good-reg">Good Reg</option>
+            <option value="tight-reg">Tight Reg</option>
+          </select>
+
+          <button class="delete-button" type="button">
+            Delete Note
+          </button>
+        </div>
       </div>
     </article>
   </template>
