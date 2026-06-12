@@ -35,7 +35,6 @@ const loginError = document.querySelector("#login-error");
 const signOutButton = document.querySelector("#sign-out-button");
 const playerGrid = document.querySelector("#player-grid");
 const playerSearch = document.querySelector("#player-search");
-const categoryFilter = document.querySelector("#category-filter");
 const addPlayerButton = document.querySelector("#add-player-button");
 const emptyMessage = document.querySelector("#empty-message");
 const saveStatus = document.querySelector("#save-status");
@@ -81,9 +80,11 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     loginView.hidden = true;
     notesView.hidden = false;
+
     subscribeToPlayers(user.uid);
   } else {
     players = [];
+
     renderPlayers();
 
     notesView.hidden = true;
@@ -100,11 +101,22 @@ loginForm.addEventListener("submit", async (event) => {
 
   loginError.textContent = "";
 
-  const email = document.querySelector("#email").value.trim();
-  const password = document.querySelector("#password").value;
+  const email = document
+    .querySelector("#email")
+    .value
+    .trim();
+
+  const password = document
+    .querySelector("#password")
+    .value;
 
   try {
-    await signInWithEmailAndPassword(auth, email, password);
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
     loginForm.reset();
   } catch (error) {
     console.error("Sign-in failed:", error);
@@ -119,12 +131,19 @@ signOutButton.addEventListener("click", async () => {
     await signOut(auth);
   } catch (error) {
     console.error("Could not sign out:", error);
-    saveStatus.textContent = "Could not sign out.";
+
+    saveStatus.textContent =
+      "Could not sign out.";
   }
 });
 
 function playersCollection(uid) {
-  return collection(db, "users", uid, "players");
+  return collection(
+    db,
+    "users",
+    uid,
+    "players"
+  );
 }
 
 function subscribeToPlayers(uid) {
@@ -145,6 +164,7 @@ function subscribeToPlayers(uid) {
       });
 
       renderPlayers();
+
       saveStatus.textContent = "";
     },
 
@@ -159,6 +179,7 @@ function subscribeToPlayers(uid) {
 
 function openAddPlayerDialog() {
   addPlayerForm.reset();
+
   newCategory.value = "uncategorized";
   addPlayerError.textContent = "";
 
@@ -172,6 +193,7 @@ function closeAddPlayerDialog() {
   }
 
   addPlayerForm.reset();
+
   addPlayerError.textContent = "";
 }
 
@@ -194,6 +216,7 @@ async function createPlayer(event) {
       "Enter a screen name.";
 
     newScreenName.focus();
+
     return;
   }
 
@@ -211,6 +234,7 @@ async function createPlayer(event) {
       "A player with that screen name already exists.";
 
     newScreenName.focus();
+
     return;
   }
 
@@ -219,14 +243,17 @@ async function createPlayer(event) {
   addPlayerError.textContent = "";
 
   try {
-    await addDoc(playersCollection(currentUser.uid), {
-      screenName,
-      screenNameLower: screenName.toLowerCase(),
-      category,
-      notes,
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp()
-    });
+    await addDoc(
+      playersCollection(currentUser.uid),
+      {
+        screenName,
+        screenNameLower: screenName.toLowerCase(),
+        category,
+        notes,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp()
+      }
+    );
 
     closeAddPlayerDialog();
 
@@ -262,6 +289,7 @@ function schedulePlayerUpdate(
   const timer = window.setTimeout(async () => {
     if (!currentUser) {
       statusElement.textContent = "Not signed in";
+
       return;
     }
 
@@ -347,20 +375,15 @@ function getFilteredPlayers() {
     .trim()
     .toLowerCase();
 
-  const selectedCategory = categoryFilter.value;
-
   return players.filter((player) => {
     const screenName = player.screenName || "";
 
-    const matchesSearch =
+    return (
       searchText === "" ||
-      screenName.toLowerCase().startsWith(searchText);
-
-    const matchesCategory =
-      selectedCategory === "all" ||
-      player.category === selectedCategory;
-
-    return matchesSearch && matchesCategory;
+      screenName
+        .toLowerCase()
+        .startsWith(searchText)
+    );
   });
 }
 
@@ -387,13 +410,18 @@ function buildPlayerCard(player) {
     fragment.querySelector(".card-saved-status");
 
   card.dataset.playerId = player.id;
+
   card.dataset.category =
     player.category || "uncategorized";
 
-  screenNameInput.value = player.screenName || "";
+  screenNameInput.value =
+    player.screenName || "";
+
   categorySelect.value =
     player.category || "uncategorized";
-  notesInput.value = player.notes || "";
+
+  notesInput.value =
+    player.notes || "";
 
   screenNameInput.addEventListener(
     "input",
@@ -415,9 +443,11 @@ function buildPlayerCard(player) {
   categorySelect.addEventListener(
     "change",
     (event) => {
-      const newCategoryValue = event.target.value;
+      const newCategoryValue =
+        event.target.value;
 
-      card.dataset.category = newCategoryValue;
+      card.dataset.category =
+        newCategoryValue;
 
       schedulePlayerUpdate(
         player.id,
@@ -442,9 +472,12 @@ function buildPlayerCard(player) {
     }
   );
 
-  deleteButton.addEventListener("click", () => {
-    deletePlayer(player.id);
-  });
+  deleteButton.addEventListener(
+    "click",
+    () => {
+      deletePlayer(player.id);
+    }
+  );
 
   return fragment;
 }
@@ -452,7 +485,8 @@ function buildPlayerCard(player) {
 function renderPlayers() {
   playerGrid.innerHTML = "";
 
-  const filteredPlayers = getFilteredPlayers();
+  const filteredPlayers =
+    getFilteredPlayers();
 
   filteredPlayers.forEach((player) => {
     playerGrid.appendChild(
@@ -486,11 +520,6 @@ cancelAddButton.addEventListener(
 
 playerSearch.addEventListener(
   "input",
-  renderPlayers
-);
-
-categoryFilter.addEventListener(
-  "change",
   renderPlayers
 );
 
