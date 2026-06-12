@@ -95,34 +95,22 @@ button:disabled {
 }
 
 .search-group {
-  display: grid;
-  grid-template-columns: minmax(220px, 1fr) 190px;
-  gap: 12px;
   flex: 1;
 }
 
 #player-search,
-#category-filter,
 .primary-button,
 .secondary-button {
   min-height: 52px;
   border-radius: 8px;
 }
 
-#player-search,
-#category-filter {
-  border: 1px solid var(--border);
-  background: var(--panel-bg);
-  color: var(--text-main);
-}
-
 #player-search {
   width: 100%;
   padding: 0 16px;
-}
-
-#category-filter {
-  padding: 0 12px;
+  border: 1px solid var(--border);
+  background: var(--panel-bg);
+  color: var(--text-main);
 }
 
 #player-search::placeholder {
@@ -170,7 +158,7 @@ button:disabled {
 .player-card {
   display: flex;
   flex-direction: column;
-  min-height: 410px;
+  min-height: 310px;
   padding: 14px;
   border: 4px solid var(--uncategorized);
   border-radius: 10px;
@@ -199,9 +187,6 @@ button:disabled {
 }
 
 .card-header {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 145px;
-  gap: 12px;
   margin-bottom: 12px;
 }
 
@@ -229,8 +214,7 @@ button:disabled {
   color: var(--input-text);
 }
 
-.screen-name-input,
-.category-select {
+.screen-name-input {
   height: 42px;
   padding: 0 10px;
 }
@@ -243,7 +227,7 @@ button:disabled {
 
 .notes-input {
   flex: 1;
-  min-height: 280px;
+  min-height: 180px;
   padding: 12px;
   resize: vertical;
   line-height: 1.45;
@@ -261,6 +245,20 @@ button:disabled {
   min-height: 20px;
   color: var(--text-muted);
   font-size: 0.85rem;
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.card-actions .category-select {
+  width: auto;
+  min-width: 140px;
+  height: 38px;
+  padding: 0 10px;
 }
 
 .delete-button {
@@ -358,7 +356,7 @@ button:focus-visible {
 }
 
 #new-notes {
-  min-height: 220px;
+  min-height: 180px;
   padding: 12px;
   resize: vertical;
   line-height: 1.45;
@@ -394,10 +392,6 @@ button:focus-visible {
     flex-direction: column;
   }
 
-  .search-group {
-    grid-template-columns: 1fr;
-  }
-
   .primary-button,
   .secondary-button {
     min-height: 48px;
@@ -414,8 +408,19 @@ button:focus-visible {
     grid-template-columns: 1fr;
   }
 
-  .card-header {
-    grid-template-columns: 1fr;
+  .card-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .card-actions {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .card-actions .category-select,
+  .card-actions .delete-button {
+    flex: 1;
   }
 
   .dialog-actions {
